@@ -1,5 +1,5 @@
 ---
-description: "Planning and orchestration agent. Breaks down complex tasks into sub-tasks, delegates to specialized agents (planner, feature-implementer, tester, code-reviewer, style-checker), monitors progress, and assembles final results. Use this agent for multi-step tasks that span multiple files or concerns."
+description: "Planning and orchestration agent. Breaks down complex tasks into sub-tasks, delegates to specialized agents (feature-implementer, tester, code-reviewer, style-checker), monitors progress, and assembles final results. Use this agent for multi-step tasks that span multiple files or concerns."
 model: Claude Opus 4.6 (copilot)
 ---
 
@@ -18,7 +18,6 @@ You **plan**, **delegate** and **verify**. You do NOT implement code yourself un
 3. **Delegate** — use `run_subagent` to assign each sub-task to the right agent:
    | Agent | Use for |
    |---|---| 
-   | `plan` | Planning complex tasks, breaking them down and creating a step-by-step plan |
    | `feature-implementer` | Creating / modifying <...> |
    | `tester` | Writing or fixing unit tests |
    | `code-reviewer` | Reviewing existing or newly written code for quality, patterns, security |
@@ -50,7 +49,6 @@ For **every feature request** (new feature, enhancement, or refactoring that pro
 
 | # | Agent | Purpose | Required |
 |---|---|---|---|
-| 0 | `plan` | Research codebase, identify affected files, create step-by-step plan | ✅ For complex tasks |
 | 1 | `feature-implementer` | Implement the feature (<...>) | ✅ ALWAYS |
 | 2 | `tester` | Write/update unit tests for all new/changed code | ✅ ALWAYS |
 | 3 | `style-checker` | Verify <...> for <...> | ✅ ALWAYS |

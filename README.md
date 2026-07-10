@@ -1,6 +1,6 @@
 # gh-copilot-orchestrator-template
 
-A drop-in template for implementing the **orchestrator pattern** with GitHub Copilot custom agents. The orchestrator plans and delegates work to specialized sub-agents (planner, implementer, tester, reviewer, style-checker) instead of doing everything itself — leading to more reliable, multi-step results for non-trivial tasks.
+A drop-in template for implementing the **orchestrator pattern** with GitHub Copilot custom agents. The orchestrator plans and delegates work to specialized sub-agents (implementer, tester, reviewer, style-checker) instead of doing everything itself — leading to more reliable, multi-step results for non-trivial tasks.
 
 ## Getting Started
 
@@ -15,7 +15,6 @@ A drop-in template for implementing the **orchestrator pattern** with GitHub Cop
 ├── copilot-instructions.md       # Project-wide context loaded into every Copilot session
 └── agents/
     ├── orchestrator.agent.md     # Plans + delegates (the core of the pattern)
-    ├── plan.agent.md             # Research & step-by-step plans (no code)
     ├── feature-implementer.agent.md  # Writes/refactors production code
     ├── tester.agent.md           # Writes/maintains unit tests
     ├── style-checker.agent.md    # Reviews styling/UI consistency
@@ -24,7 +23,7 @@ A drop-in template for implementing the **orchestrator pattern** with GitHub Cop
 
 ## Customization Tips
 
-- **Models** — each agent specifies a `model:` in its frontmatter. Swap to whatever models you have access to (e.g. `Claude Sonnet 4.6 (copilot)`, `GPT-5.3-Codex (copilot)`). Heavier models for orchestration/planning/review, faster models for implementation.
+- **Models** — each agent specifies a `model:` in its frontmatter. Swap to whatever models you have access to (e.g. `Claude Sonnet 4.6 (copilot)`, `GPT-5.3-Codex (copilot)`). Heavier models for orchestration/review, faster models for implementation.
 - **Tech-stack agnostic** — the templates use neutral language. Fill `<...>` with your stack: e.g. "Angular 18 + RxJS + Jasmine", "Next.js + React + Vitest", "FastAPI + pytest", "Rust + cargo test".
 - **Remove what you don't need** — the `style-checker` agent is geared toward UI/CSS work. For backend, CLI, library, or infrastructure projects, you can either delete it or repurpose it (e.g. as a "docs-checker" or "schema-checker"). If you remove it, also drop it from the mandatory pipeline in `orchestrator.agent.md` and the agent table in `copilot-instructions.md`.
 - **Add your own agents** — drop additional `*.agent.md` files into `.github/agents/` for project-specific roles (e.g. `db-migrator`, `api-designer`, `security-auditor`) and register them in the orchestrator's delegation table.
